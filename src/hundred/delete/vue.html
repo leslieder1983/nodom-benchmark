@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../js/vue.global.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <div class="header">
+            <div class="title">
+                <h1>vue3.2.19</h1>
+            </div>
+        </div>
+        <table>
+            <tr v-for="(item,index) in datas" :key="item.id">
+                <td style="width:100px">{{item.id}}</td>
+                <td style="width:200px">{{item.data}}</td>
+                <td style="width:50px">
+                    <a v-on:click="remove(index)">删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script type="module">
+    import { datas_100 } from "../../js/genData.js";
+    const Test = {
+        data() {
+            return {
+        datas: datas_100,
+            }
+        },
+        methods: {
+            remove(index) {
+				this.datas.splice(index, 1);
+				},
+         },
+    }
+
+Vue.createApp(Test).mount('div')
+</script>
+
+</html>

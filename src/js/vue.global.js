@@ -5552,7 +5552,6 @@ var Vue = (function (exports) {
           }
       };
       const updateComponent = (n1, n2, optimized) => {
-          console.log('updateComponent')
           const instance = (n2.component = n1.component);
           if (shouldUpdateComponent(n1, n2, optimized)) {
               if (instance.asyncDep &&
@@ -5714,24 +5713,7 @@ var Vue = (function (exports) {
                   {
                       startMeasure(instance, `patch`);
                   }
-                //   console.log('patchnode')
-                //   console.time('render');
-                //   patch(prevTree, nextTree, 
-                //     // parent may have changed if it's in a teleport
-                //     hostParentNode(prevTree.el), 
-                //     // anchor may have changed if it's in a fragment
-                //     getNextHostNode(prevTree), instance, parentSuspense, isSVG);
-                // //   for(let i=0;i<1000;i++){
-                // //     patch(prevTree, nextTree, 
-                // //         // parent may have changed if it's in a teleport
-                // //         hostParentNode(prevTree.el), 
-                // //         // anchor may have changed if it's in a fragment
-                // //         getNextHostNode(prevTree), instance, parentSuspense, isSVG);
-                // //         {
-                // //             endMeasure(instance, `patch`);
-                // //         }
-                // //   }
-                //   console.timeEnd('render')
+               
                   patch(prevTree, nextTree, 
                   // parent may have changed if it's in a teleport
                   hostParentNode(prevTree.el), 
@@ -6266,7 +6248,6 @@ var Vue = (function (exports) {
               }
           }
           else {
-              console.log('render了')
               patch(container._vnode || null, vnode, container, null, null, null, isSVG);
           }
           flushPostFlushCbs();

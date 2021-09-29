@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../js/vue.global.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <div class="header">
+            <div class="title">
+                <h1>vue3.2.19</h1>
+                <button v-on:click="replaceAll">全部替换</button>
+            </div>
+        </div>
+        <table>
+            <tr v-for="item in datas" :key="item.id">
+                <td style="width:100px">{{item.id}}</td>
+                <td style="width:200px">{{item.data}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script type="module">
+    import { datas_10 } from "../../js/genData.js";
+    const Test = {
+        data() {
+            return {
+                 datas: datas_10,
+            }
+        },
+        methods: {
+            replaceAll() {
+					let datas = [];
+					for (let i = 0; i < 100; i++) {
+						datas.push({
+							id: i,
+							data: Math.random(),
+						});
+					}
+					this.datas = datas;
+				},
+         },
+    }
+
+Vue.createApp(Test).mount('div')
+</script>
+
+</html>
