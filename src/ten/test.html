@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div></div>
+	</body>
+
+	<script type="module">
+		import * as nodom from "../js/nodom.js";
+		class Module1 extends nodom.Module {
+			template() {
+				return `
+		                  <div>
+		                     		<div class="header">
+		                              <div class="title">
+		                                  <h1>nodom3.js</h1>
+		                              </div>
+		                              <div class="btn-container">
+		                                  <div class="button-group">
+		                                      <button e-click=createNode100>创建100行</button>
+		                                      <button e-click=createNode100>替换100行</button>
+		                                      <button e-click=replaceEvery10thRow>每10行替换一次</button>
+		                                      <button e-click=sortNode>排序节点</button>
+		                                      <button e-click=deleteAll>删除所有行</button>
+		                                  </div>
+		                                  <br/>
+		                                  <div class="button-group">
+		                                      <button e-click=createNode1000>创建1000行</button>
+		                                      <button e-click=createNode1000>替换1000行</button>
+		                                      <button e-click=replace1000Every10thRow>每10行替换一次</button>
+		                                      <button e-click=sortNode>排序节点</button>
+		                                      <button e-click=deleteAll>删除所有行</button>
+		                                  </div>
+		                              </div>
+		                          </div>
+		                          <table>
+		                              <tr x-repeat={{datas}}>
+		                                  <td style="width:100px">{{id}}</td>
+		                                  <td style="width:200px">{{data}}</td>
+		                                  <td style="width:50px">
+		                                         <a e-click=remove>删除</a>
+		                                  </td>
+		                              </tr>
+		                          </table>
+		                  </div>
+		             `;
+			}
+			data = {};
+			methods = {
+				createNode100() {
+					let datas = [];
+					for (let i = 0; i < 100; i++) {
+						datas.push({
+							id: i,
+							data: Math.random(),
+						});
+					}
+					this.datas = datas;
+				},
+				createNode1000() {
+					let datas = [];
+					for (let i = 0; i < 1000; i++) {
+						datas.push({
+							id: i,
+							data: Math.random(),
+						});
+					}
+					this.datas = datas;
+				},
+
+				remove(dom, module) {
+					module.model.datas.splice(this.$index, 1);
+				},
+
+				replaceEvery10thRow() {
+					for (let i = 0; i < 9; i++) {
+						this.datas[i * 10] = {
+							id: this.datas[i * 10].id,
+							data: Math.random(),
+						};
+					}
+				},
+
+				replace1000Every10thRow() {
+					for (let i = 0; i < 99; i++) {
+						this.datas[i * 10] = {
+							id: this.datas[i * 10].id,
+							data: Math.random(),
+						};
+					}
+				},
+				sortNode() {
+					this.datas = this.datas.sort((a, b) => {
+						return a.data - b.data;
+					});
+				},
+				deleteAll() {
+					this.datas = {};
+				},
+			};
+		}
+		nodom.nodom(Module1, "div");
+	</script>
+</html>
