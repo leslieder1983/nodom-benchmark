@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/src/js/echarts.min.js"></script>
+    <title>RandomUpdate</title>
+</head>
+
+<body>
+    <div id="main" style="width: 900px;height: 500px;">
+
+    </div>
+</body>
+<script>
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        title: {
+            text: 'randomUpdate(Ten)'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        color: ["#ed1941", "#1d953f", "#a7324a", "#007d65"],
+        legend: {
+            data: ['Nodom(首次渲染)', 'Vue(首次渲染)', 'Nodom(增量渲染)', 'Vue(增量渲染)']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['首次渲染总时间(ms)', '编译时间(ms)', '渲染时间(ms)', '内存峰值(MB)']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: 'Nodom(首次渲染)',
+            type: 'line',
+            stack: 'Total',
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        color: "#ed1941" //折线的颜色
+                    }
+                }
+            },
+            data: [17.73, 6.29, 9.59, 3.8]
+        }, {
+            name: 'Vue(首次渲染)',
+            type: 'line',
+            stack: 'Total',
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        color: "#1d953f" //折线的颜色
+                    }
+                }
+            },
+            data: [37.71, 24.22, 8.08, 4.2]
+        }, {
+            name: 'Nodom(增量渲染)',
+            type: 'line',
+            stack: 'Total',
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        color: "#a7324a" //折线的颜色
+                    }
+                }
+            },
+            data: [3.08, 1.87, 1.21, 3.9]
+        }, {
+            name: 'Vue(增量渲染)',
+            type: 'line',
+            stack: 'Total',
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        color: "#007d65" //折线的颜色
+                    }
+                }
+            },
+            data: [3.01, 1.29, 1.31, 4.7]
+        }]
+    };
+
+    option && myChart.setOption(option);
+</script>
+
+</html>
